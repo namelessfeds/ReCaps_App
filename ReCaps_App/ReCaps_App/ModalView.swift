@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ModalView: View {
+    @Binding var showModal: Bool
     var body: some View {
         NavigationStack {
             VStack {
@@ -17,11 +18,11 @@ struct ModalView: View {
                         .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(
                 leading: Button(action: {
-                    
+                    showModal = false
                 }) {
                     Text("Back")
                 }, trailing: Button(action: {
-                    
+                    showModal = false
                 }) {
                     Text("Add")
                         .bold()
@@ -31,5 +32,5 @@ struct ModalView: View {
 }
 
 #Preview {
-    ModalView()
+    ModalView(showModal : .constant(true))
 }

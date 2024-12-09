@@ -24,7 +24,7 @@ struct MainPageView: View {
                                 )
         }
         .sheet(isPresented: $showModal) {
-            ModalView() // The content of the modal
+            ModalView(showModal : $showModal) // The content of the modal
         }
 
             
