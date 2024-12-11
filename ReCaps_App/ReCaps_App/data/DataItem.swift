@@ -16,7 +16,7 @@ class DataItem: Identifiable {
     var capsuleDescription: String
     var capsuleImage: Data?
     
-    init(capsuleName: String, capsuleDescription: String, capsuleImage: Data) {
+    init(capsuleName: String, capsuleDescription: String, capsuleImage: Data?) {
         self.capsuleName = capsuleName
         self.capsuleDescription = capsuleDescription
         self.capsuleImage = capsuleImage
