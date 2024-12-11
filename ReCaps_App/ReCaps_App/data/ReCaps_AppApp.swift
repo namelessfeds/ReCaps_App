@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct ReCaps_AppApp: App {
@@ -13,5 +14,6 @@ struct ReCaps_AppApp: App {
         WindowGroup {
             MainPageView()
         }
+        .modelContainer(for: DataItem.self)
     }
 }

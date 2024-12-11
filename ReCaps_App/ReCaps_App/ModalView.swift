@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct ModalView: View {
     
@@ -13,7 +14,15 @@ struct ModalView: View {
     
     @State private var capsuleName: String = ""           // Tracks the Capsule Name
     @State private var capsuleDescription: String = ""    // Tracks the Description
+    @State private var capsuleImage: Data = Data() // Tracks the image
     
+    @Environment(\.modelContext) private var context // Import data
+    
+    func addCapsule() {
+        // Create the item
+        let capsule = DataItem(capsuleName: capsuleName, capsuleDescription: capsuleDescription, capsuleImage: capsuleImage)
+        context.insert(capsule)
+    }
     
     var body: some View {
         
@@ -28,7 +37,7 @@ struct ModalView: View {
                                     .cornerRadius(8)
                                     .bold()
 
-                                TextField("Description (optional)", text: $capsuleDescription)
+                                TextField("Description", text: $capsuleDescription)
                                     .padding()
                                     .background(Color(UIColor.systemGray6))
                                     .cornerRadius(8)
@@ -44,6 +53,7 @@ struct ModalView: View {
                 }) {
                     Text("Back")
                 }, trailing: Button(action: {
+                    addCapsule()
                     showModal = false
                 }) {
                     Text("Add")
