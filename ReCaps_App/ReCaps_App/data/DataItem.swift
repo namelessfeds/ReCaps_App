@@ -16,6 +16,10 @@ class DataItem: Identifiable {
     var capsuleDescription: String
     var capsuleImage: Data?
     
+    @Attribute
+    var galleria: [UUID] = []
+     
+    
     init(capsuleName: String, capsuleDescription: String, capsuleImage: Data?) {
         self.capsuleName = capsuleName
         self.capsuleDescription = capsuleDescription

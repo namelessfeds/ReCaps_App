@@ -1,41 +1,41 @@
-//
-//  MainPageView.swift
-//  ReCaps_App
-//
-//  Created by Federica Bertini on 09/12/24.
-//
-
 import SwiftUI
 import SwiftData
 
 struct MainPageView: View {
+    
+    @Environment(\.modelContext) var context
     @State private var showModal = false // Tracks if modal is showing
-    @Query private var capsule: [DataItem]
+    @Query var capsule: [DataItem] // Assumed DataItem is a SwiftData model
     
     var body: some View {
         NavigationStack {
             VStack {
-                if capsule.isEmpty {Text("No memories yet")}
-                else {
+                if capsule.isEmpty {
+                    Text("No memories yet")
+                } else {
                     ScrollView {
-                        ForEach(capsule) { capsule in
-                            CapsuleView(capsule: capsule)
+                        ForEach(capsule) { capsuleItem in // Renamed to avoid shadowing
+                            CapsuleView(capsule: capsuleItem)
                         }
                     }
+                    
+                    .listStyle(InsetGroupedListStyle()) // Optional: Improve appearance
                 }
             }
-                .navigationTitle("Your ReCaps")
-                .navigationBarItems(
-                                    trailing: Button(action: {
-                                        showModal = true
-                                    }) {
-                                        Image(systemName: "plus") // Button's icon
-                                            .font(.title2) // Icon size
-                                    }
-                                )
+            .navigationTitle("Your ReCaps")
+            .navigationBarItems(
+                trailing: Button(action: {
+                    showModal = true
+                }) {
+                    Image(systemName: "plus")
+                        .font(.title2) // Icon size
+                }
+                
+            )
+        
         }
         .sheet(isPresented: $showModal) {
-            ModalView(showModal : $showModal) // The content of the modal
+            ModalView(showModal: $showModal) // The content of the modal
         }
     }
 }

@@ -8,51 +8,48 @@
 import SwiftUI
 
 struct CapsuleView: View {
+    
+    @Environment(\.modelContext) var context
     var capsule: DataItem
     var image = "seashore"
     var body: some View {
-        ZStack(alignment: .bottomLeading) { // Allinea gli elementi in basso a sinistra
-            if let imageData = capsule.capsuleImage,
-            let uiImage = UIImage(data: imageData) {
-                RoundedRectangle(cornerRadius: 25)
-                    .fill(Color.clear)
-                    .frame(height: 246)
-                    .overlay(
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFill()
-                            .frame(height: 246)
-                            .clipShape(RoundedRectangle(cornerRadius: 30))
-                            .overlay(
-                                LinearGradient(
-                                    gradient: Gradient(colors: [Color.clear, Color.black.opacity(0.6)]),
-                                    startPoint: .top,
-                                    endPoint: .bottom
-                                )
+        HStack {
+            ZStack(alignment: .bottomLeading) { // Allinea gli elementi in basso a sinistra
+                if let imageData = capsule.capsuleImage,
+                   let uiImage = UIImage(data: imageData) {
+                    RoundedRectangle(cornerRadius: 25)
+                        .fill(Color.clear)
+                        .frame(height: 246)
+                        .overlay(
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(height: 246)
                                 .clipShape(RoundedRectangle(cornerRadius: 30))
-                            )
-                            .padding()
-                    )
+                                .padding()
+                        )
+    
+                }
+                
+                else {
+                    Image(image)
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 370, height: 246)
+                        .clipShape(RoundedRectangle(cornerRadius: 30))
+                }
+                
+                VStack(alignment: .leading) { // Testi allineati a destra
+                    Text(capsule.capsuleName) // Usa il nome dal modello
+                        .font(.title)
+                        .bold()
+                    Text(capsule.capsuleDescription) // Usa la descrizione dal modello
+                        .font(.subheadline)
+                }
+                .padding(.leading, 25)
+                .padding(.bottom, 25) // spazio dal bordo
+                .foregroundColor(.white)
             }
-            else {
-                Image(image)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 246)
-                    .clipShape(RoundedRectangle(cornerRadius: 30))
-                    .padding()
-            }
-            
-            VStack(alignment: .leading) { // Testi allineati a destra
-                Text(capsule.capsuleName) // Usa il nome dal modello
-                    .font(.title)
-                    .bold()
-                Text(capsule.capsuleDescription) // Usa la descrizione dal modello
-                    .font(.subheadline)
-            }
-            .padding(.leading, 38)
-            .padding(.bottom, 30) // spazio dal bordo
-            .foregroundColor(.white)
         }
     }
 }
