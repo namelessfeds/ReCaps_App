@@ -10,15 +10,14 @@ import SwiftData
 
 @Model
 class DataItem: Identifiable {
-    
     var id: UUID = UUID()
     var capsuleName: String
     var capsuleDescription: String
     var capsuleImage: Data?
-    
-    @Attribute
-    var galleria: [UUID] = []
-     
+
+    // Relazione uno-a-molti con Photo
+    @Relationship(deleteRule: .cascade)
+    var photos: [Photo] = []  // Array di foto associate a questo DataItem
     
     init(capsuleName: String, capsuleDescription: String, capsuleImage: Data?) {
         self.capsuleName = capsuleName

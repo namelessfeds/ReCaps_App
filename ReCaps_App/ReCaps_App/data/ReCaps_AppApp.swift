@@ -15,5 +15,6 @@ struct ReCaps_AppApp: App {
             MainPageView()
         }
         .modelContainer(for: DataItem.self)
+        .modelContainer(for: Photo.self)
     }
 }

@@ -46,8 +46,8 @@ struct CapsuleView: View {
                     Text(capsule.capsuleDescription) // Usa la descrizione dal modello
                         .font(.subheadline)
                 }
-                .padding(.leading, 25)
-                .padding(.bottom, 25) // spazio dal bordo
+                .padding(.leading, 35)
+                .padding(.bottom, 35) // spazio dal bordo
                 .foregroundColor(.white)
             }
         }

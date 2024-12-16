@@ -15,7 +15,9 @@ struct MainPageView: View {
                 } else {
                     ScrollView {
                         ForEach(capsule) { capsuleItem in // Renamed to avoid shadowing
-                            CapsuleView(capsule: capsuleItem)
+                            NavigationLink(destination: CapsuleDetailView(capsule: capsuleItem)) {
+                                CapsuleView(capsule: capsuleItem)
+                            }
                         }
                     }
                     
