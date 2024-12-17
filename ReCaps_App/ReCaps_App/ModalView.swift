@@ -85,11 +85,18 @@ struct ModalView: View {
                         .padding()
                         .background(Color(UIColor.systemGray6))
                         .cornerRadius(8)
-                }
+                } .padding()
                 
                 PhotosPicker(selection: $selectedPhotosData,
                              matching: .images) {
                     Image(systemName: "photo")
+                        .resizable()
+                        .frame(width: 31.75, height: 25)
+                        .clipShape(Rectangle())
+                        .cornerRadius(3.5)
+                        .foregroundColor(Color.blue)
+                        .opacity(0.9)
+                        .padding(.all, 10)
                 }
                 
                 ForEach(0..<selectedPhotos.count, id: \.self) { i in

@@ -27,6 +27,7 @@ struct CapsuleDetailView: View {
                        let uiImage = UIImage(data: imageData) {
                         Image(uiImage: uiImage)
                             .resizable()
+                            .scaledToFill()
                             .ignoresSafeArea()
                             .frame(maxWidth: .infinity, maxHeight: 400)
                         
@@ -45,11 +46,10 @@ struct CapsuleDetailView: View {
                             .bold()
                             .textCase(.uppercase)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .colorInvert()
                         Text(capsule.capsuleDescription)
                             .font(.system(size: 18))
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            .colorInvert()
+                            
                     }
                     .padding()
                     .background(

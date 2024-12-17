@@ -20,6 +20,7 @@ struct ImportImageView: View {
                 if let image = selectedImage {
                     Image(uiImage: image)
                         .resizable()
+                        .scaledToFill()
                         .frame(width: 350, height: 170)
                         .clipShape(Rectangle())
                         .cornerRadius(30)
