@@ -54,6 +54,8 @@ struct CapsuleView: View {
     }
 }
 
+/*
 #Preview {
     CapsuleView(capsule: DataItem(capsuleName: "Barcelona", capsuleDescription: "We had a lot of fun", capsuleImage: Data()))
 }
+*/

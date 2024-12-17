@@ -19,9 +19,10 @@ class DataItem: Identifiable {
     @Relationship(deleteRule: .cascade)
     var photos: [Photo] = []  // Array di foto associate a questo DataItem
     
-    init(capsuleName: String, capsuleDescription: String, capsuleImage: Data?) {
+    init(capsuleName: String, capsuleDescription: String, capsuleImage: Data? = nil, photos : [Photo] = []) {
         self.capsuleName = capsuleName
         self.capsuleDescription = capsuleDescription
         self.capsuleImage = capsuleImage
+        self.photos = photos
     }
 }

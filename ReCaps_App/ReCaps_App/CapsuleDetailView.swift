@@ -58,16 +58,17 @@ struct CapsuleDetailView: View {
                 )
             }
             VStack{
-                ImageGridView()
+                GridView()
             }
             
         }
     }
 }
-
+/*
 #Preview {
     CapsuleDetailView(capsule: DataItem(
         capsuleName: "Ancona",
         capsuleDescription: "Golden beaches, spectacular sunsets and fresh fish every night. I walked along the seafront, listened to the waves and discovered hidden corners. It was short, but refreshing.",
-        capsuleImage: Data()))
+        capsuleImage: Data(), photos: <#[Photo]#>))
 }
+*/

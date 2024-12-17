@@ -22,7 +22,7 @@ struct ModalView: View {
     
     func addCapsule() {
         // Create the item
-        let capsule = DataItem(capsuleName: capsuleName, capsuleDescription: capsuleDescription, capsuleImage: capsuleImageData)
+        let capsule = DataItem(capsuleName: capsuleName, capsuleDescription: capsuleDescription, capsuleImage: capsuleImageData, photos: [])
         context.insert(capsule)
     }
     
