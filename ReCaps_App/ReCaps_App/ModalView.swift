@@ -43,6 +43,7 @@ struct ModalView: View {
                             let uiImage = UIImage(data: image)
                             Image(uiImage: uiImage!)
                                 .resizable()
+                                .scaledToFill()
                                 .frame(width: 350, height: 170)
                                 .clipShape(Rectangle())
                                 .cornerRadius(30)

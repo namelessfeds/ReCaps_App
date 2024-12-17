@@ -49,7 +49,7 @@ struct CapsuleDetailView: View {
                         Text(capsule.capsuleDescription)
                             .font(.system(size: 18))
                             .frame(maxWidth: .infinity, alignment: .leading)
-                            
+                        
                     }
                     .padding()
                     .background(
