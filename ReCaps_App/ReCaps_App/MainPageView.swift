@@ -22,8 +22,11 @@ struct MainPageView: View {
                     }
                     
                     .listStyle(InsetGroupedListStyle()) // Optional: Improve appearance
+                    
                 }
+                
             }
+            
             .navigationTitle("Your ReCaps")
             .navigationBarItems(
                 trailing: Button(action: {
@@ -33,13 +36,16 @@ struct MainPageView: View {
                         .font(.title2) // Icon size
                 }
                 
+                
             )
-        
+            
         }
         .sheet(isPresented: $showModal) {
             ModalView(showModal: $showModal) // The content of the modal
         }
-    }
+        
+
+    }    
 }
 
 #Preview {

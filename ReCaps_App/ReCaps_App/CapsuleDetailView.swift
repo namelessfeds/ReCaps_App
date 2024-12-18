@@ -17,56 +17,54 @@ struct CapsuleDetailView: View {
     
     var image = "seashore"
     var capsule: DataItem
+    var testColor: Color = Color("Test")
     
     var body: some View {
         NavigationStack {
             ScrollView{
                 ZStack(alignment: .bottom){
-                    
-                    if let imageData = capsule.capsuleImage,
-                       let uiImage = UIImage(data: imageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFill()
-                            .ignoresSafeArea()
-                            .frame(maxWidth: .infinity, maxHeight: 400)
-                        
+                    GeometryReader { geometry in
+                        if let imageData = capsule.capsuleImage,
+                           let uiImage = UIImage(data: imageData) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: geometry.size.width, height: 300)
+                                .clipped()
+                        } else {
+                            Image(image)
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: geometry.size.width, height: 300)
+                                .clipped()
+                        }
                     }
-                    
-                    else {
-                        Image(image)
-                            .resizable()
-                            .ignoresSafeArea()
-                            .frame(maxWidth: .infinity, maxHeight: 400)
-                    }
-                    
+                    .frame(height: 300) // Altezza dell'immagine
                     VStack{
                         Text(capsule.capsuleName)
                             .font(.title)
                             .bold()
-                            .textCase(.uppercase)
+                            .foregroundColor(.white)   .textCase(.uppercase)
                             .frame(maxWidth: .infinity, alignment: .leading)
+                        
                         Text(capsule.capsuleDescription)
                             .font(.system(size: 18))
+                            .foregroundColor(.white)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
                     }
                     .padding()
-                    .background(
-                        LinearGradient(
-                            gradient: Gradient(colors: [Color.black.opacity(1), Color.clear]),
-                            startPoint: .bottom,
-                            endPoint: .top
-                        )
-                    )
                 }
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 3), spacing: 10)
+                LazyVGrid(
+                    columns: [GridItem(.adaptive(minimum: 160), spacing: 8)],
+                    spacing: 8
+                )
                 {
                     ForEach(capsule.savedPhotos, id: \.self){ photo in
                         if let uiImage = UIImage(data: photo){
                             Image(uiImage: uiImage)
                                 .resizable()
-                                .scaledToFill()
+                                .scaledToFit()
                         }
                         
                     }
@@ -82,6 +80,7 @@ struct CapsuleDetailView: View {
                     }
                 }
             }
+            .background(Color(UIColor.systemGray6))
         }
     }
 }
